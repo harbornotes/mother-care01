@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一人でいるときの緊急時対応ガイド</title>
+<style>
+:root{
+  --bg:#F6F4EF;
+  --card:#FFFFFF;
+  --ink:#22282E;
+  --sub:#5A636C;
+  --line:#DDD8CE;
+  --red:#C22F28;
+  --red-bg:#FCEDEB;
+  --red-line:#E8B7B3;
+  --amber:#9A6208;
+  --amber-bg:#FBF1DE;
+  --amber-line:#E4CDA0;
+  --teal:#0C6B67;
+  --teal-bg:#E4F1F0;
+  --teal-line:#AFD4D2;
+  --navy:#2C4A6E;
+  --navy-bg:#E9EFF6;
+  --navy-line:#BCCDDF;
+  --chip:#F0EDE6;
+  --shadow:0 1px 3px rgba(30,30,25,.08);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#161A1F;
+    --card:#1F252C;
+    --ink:#E9EBED;
+    --sub:#A8B0B8;
+    --line:#39414A;
+    --red:#FF7A6E;
+    --red-bg:#3A2523;
+    --red-line:#6E403B;
+    --amber:#F0B45C;
+    --amber-bg:#38301F;
+    --amber-line:#6B5834;
+    --teal:#5BC6C0;
+    --teal-bg:#1D3534;
+    --teal-line:#35605E;
+    --navy:#8FB4DC;
+    --navy-bg:#242F3C;
+    --navy-line:#3D5470;
+    --chip:#2A313A;
+    --shadow:0 1px 3px rgba(0,0,0,.35);
+  }
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;
+  font-size:1rem;
+  line-height:1.65;
+  padding:16px 12px 48px;
+}
+main{max-width:640px;margin:0 auto;}
+
+/* ===== タイトル ===== */
+.title-block{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-top:6px solid var(--red);
+  border-radius:14px;
+  padding:18px 16px 14px;
+  box-shadow:var(--shadow);
+  margin-bottom:16px;
+}
+.title-date{
+  font-size:0.95rem;
+  color:var(--sub);
+  letter-spacing:.05em;
+  margin-bottom:6px;
+}
+h1{
+  font-size:1.5rem;
+  line-height:1.4;
+  font-weight:800;
+}
+h1 .h1-sub{
+  display:block;
+  font-size:1rem;
+  font-weight:600;
+  color:var(--sub);
+  margin-top:6px;
+}
+.title-lead{
+  margin-top:12px;
+  font-size:0.98rem;
+  background:var(--navy-bg);
+  border:1px solid var(--navy-line);
+  border-radius:10px;
+  padding:12px 14px;
+}
+.title-lead strong{color:var(--navy);}
+.title-urgent{font-size:1.65rem;line-height:1.25;margin:6px 0 8px;}
+.title-urgent strong{color:var(--red);}
+.src a{color:var(--navy);text-decoration:underline;}
+
+/* ===== セクション共通 ===== */
+section{margin-bottom:18px;}
+.sec-head{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:10px;
+}
+.sec-badge{
+  flex:0 0 auto;
+  min-width:38px;
+  height:38px;
+  border-radius:11px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  font-size:1.05rem;
+  color:#fff;
+  padding:0 8px;
+}
+h2{font-size:1.22rem;line-height:1.4;font-weight:800;}
+.sec-sub{font-size:0.95rem;color:var(--sub);margin-top:2px;}
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px;
+  box-shadow:var(--shadow);
+}
+.card + .card{margin-top:10px;}
+h3{
+  font-size:1.05rem;
+  font-weight:800;
+  margin-bottom:10px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.h3-dot{
+  flex:0 0 auto;
+  width:10px;height:10px;border-radius:50%;
+}
+.note{
+  font-size:0.95rem;
+  color:var(--sub);
+  margin-top:8px;
+  padding-top:8px;
+  border-top:1px dashed var(--line);
+}
+.src{
+  font-size:0.95rem;
+  color:var(--sub);
+  margin-top:8px;
+  padding:9px 11px;
+  background:var(--chip);
+  border-radius:8px;
+}
+.src b{color:var(--ink);}
+
+/* ===== 結論:優先順位ステップ ===== */
+.prio{list-style:none;}
+.prio li{
+  position:relative;
+  display:flex;
+  gap:12px;
+  padding:0 0 14px 0;
+}
+.prio li:last-child{padding-bottom:0;}
+.prio .p-num{
+  flex:0 0 auto;
+  width:30px;height:30px;
+  border-radius:50%;
+  background:var(--red);
+  color:#fff;
+  font-weight:800;
+  font-size:1.05rem;
+  display:flex;align-items:center;justify-content:center;
+  z-index:1;
+}
+.prio li::before{
+  content:"";
+  position:absolute;
+  left:14px;top:30px;bottom:0;
+  width:2px;
+  background:var(--red-line);
+}
+.prio li:last-child::before{display:none;}
+.prio .p-body{padding-top:4px;font-size:1rem;}
+.prio .p-body b{font-weight:800;}
+.prio .p-body .p-sub{display:block;font-size:0.95rem;color:var(--sub);}
+
+/* ===== チェックリスト ===== */
+.check{list-style:none;}
+.check li{
+  position:relative;
+  padding:6px 0 6px 32px;
+  font-size:1rem;
+}
+.check li + li{border-top:1px solid var(--line);}
+.check li::before{
+  content:"";
+  position:absolute;
+  left:2px;top:14px;
+  width:16px;height:16px;
+  border-radius:5px;
+  border:2px solid var(--teal);
+  background:var(--teal-bg);
+}
+.check li::after{
+  content:"";
+  position:absolute;
+  left:6px;top:17px;
+  width:8px;height:5px;
+  border-left:2.5px solid var(--teal);
+  border-bottom:2.5px solid var(--teal);
+  transform:rotate(-45deg);
+}
+
+/* ===== ホーム画面配置 ===== */
+.home-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-top:4px;
+}
+.home-item{
+  border:1.5px solid var(--navy-line);
+  background:var(--navy-bg);
+  border-radius:10px;
+  padding:9px 11px;
+  font-size:0.95rem;
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  line-height:1.4;
+}
+.home-item .hi-ic{
+  flex:0 0 auto;
+  width:30px;height:30px;
+  border-radius:8px;
+  background:var(--navy);
+  color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.95rem;
+  font-weight:800;
+}
+.home-item.hi-119 .hi-ic{background:var(--red);}
+.home-item.hi-119{border-color:var(--red-line);background:var(--red-bg);}
+
+/* ===== OSカード ===== */
+.os-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:4px;}
+@media (min-width:480px){.os-grid{grid-template-columns:1fr 1fr;}}
+.os-card{
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:12px;
+  background:var(--chip);
+  font-size:0.95rem;
+}
+.os-card .os-name{
+  display:inline-block;
+  font-weight:800;
+  font-size:0.95rem;
+  background:var(--ink);
+  color:var(--bg);
+  border-radius:6px;
+  padding:2px 10px;
+  margin-bottom:8px;
+}
+
+/* ===== 症状カード ===== */
+.sym-unified{border:1.5px solid var(--red-line);}
+.sym-group{padding:8px 0;}
+.sym-group:first-child{padding-top:2px;}
+.sym-group:last-child{padding-bottom:2px;}
+.sym-group + .sym-group{border-top:1px dashed var(--red-line);margin-top:2px;}
+.sym-label{
+  display:inline-block;
+  background:var(--red-bg);
+  color:var(--red);
+  font-weight:800;
+  font-size:0.95rem;
+  border-radius:999px;
+  padding:3px 12px;
+  margin-bottom:8px;
+}
+.sym-chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;}
+.sym-chips li{
+  font-size:0.95rem;
+  background:var(--chip);
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:4px 12px;
+  line-height:1.5;
+}
+.alert-banner{
+  background:var(--red);
+  color:#fff;
+  border-radius:12px;
+  padding:14px 16px;
+  font-weight:800;
+  font-size:1.05rem;
+  line-height:1.55;
+  margin-bottom:12px;
+  text-align:center;
+}
+.alert-banner .ab-small{
+  display:block;
+  font-weight:600;
+  font-size:0.95rem;
+  opacity:.92;
+  margin-top:4px;
+}
+
+/* ===== 連絡順序フロー ===== */
+.flow{list-style:none;}
+.flow li{position:relative;}
+.flow .f-node{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  border:1.5px solid var(--line);
+  border-radius:12px;
+  background:var(--card);
+  padding:10px 12px;
+}
+.flow .f-num{
+  flex:0 0 auto;
+  width:32px;height:32px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;
+  font-size:1.05rem;
+  color:#fff;
+  background:var(--navy);
+}
+.flow .f-label{font-weight:800;font-size:1.1rem;line-height:1.4;}
+.flow .f-sub{font-size:0.95rem;color:var(--sub);font-weight:500;}
+.flow li.f-first .f-node{
+  border-color:var(--red);
+  border-width:2.5px;
+  background:var(--red-bg);
+}
+.flow li.f-first .f-num{background:var(--red);}
+.flow li.f-first .f-label{color:var(--red);font-size:1.25rem;}
+.flow li.f-opt .f-node{border-style:dashed;background:var(--chip);}
+.flow li.f-opt .f-num{background:var(--sub);}
+.flow .f-arrow{
+  height:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.flow .f-arrow svg{display:block;}
+
+/* ===== 赤ライン(NG) ===== */
+.ng-list{list-style:none;}
+.ng-list li{
+  position:relative;
+  padding:7px 0 7px 34px;
+  font-size:1rem;
+  font-weight:600;
+}
+.ng-list li + li{border-top:1px solid var(--red-line);}
+.ng-list li::before{
+  content:"";
+  position:absolute;
+  left:2px;top:13px;
+  width:18px;height:18px;
+  border-radius:50%;
+  border:2px solid var(--red);
+}
+.ng-list li::after{
+  content:"";
+  position:absolute;
+  left:6px;top:22px;
+  width:14px;height:2px;
+  background:var(--red);
+  transform:rotate(-45deg);
+}
+.ng-card{
+  border:1.5px solid var(--red-line);
+  background:var(--red-bg);
+}
+.ng-card h3{color:var(--red);}
+
+/* ===== 分岐フロー(職場) ===== */
+.branch{margin-top:4px;}
+.b-node{
+  border:1.5px solid var(--line);
+  border-radius:12px;
+  background:var(--card);
+  padding:10px 12px;
+  font-weight:700;
+  font-size:1rem;
+  text-align:center;
+}
+.b-node.b-start{background:var(--amber-bg);border-color:var(--amber-line);}
+.b-node .b-sub{display:block;font-size:0.95rem;font-weight:500;color:var(--sub);}
+.b-arrow{display:flex;justify-content:center;padding:2px 0;}
+.b-split{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.b-col .b-tag{
+  display:block;
+  text-align:center;
+  font-size:0.95rem;
+  font-weight:800;
+  border-radius:999px;
+  padding:2px 10px;
+  margin:0 auto 6px;
+  width:fit-content;
+}
+.b-col.b-ok .b-tag{background:var(--teal-bg);color:var(--teal);border:1px solid var(--teal-line);}
+.b-col.b-alert .b-tag{background:var(--red-bg);color:var(--red);border:1px solid var(--red-line);}
+.b-col.b-ok .b-node{border-color:var(--teal-line);}
+.b-col.b-alert .b-node{border-color:var(--red-line);background:var(--red-bg);}
+
+/* ===== 文例 ===== */
+.quote{
+  margin-top:8px;
+  border-left:4px solid var(--teal);
+  background:var(--teal-bg);
+  border-radius:0 10px 10px 0;
+  padding:10px 12px;
+  font-size:0.98rem;
+}
+.quote .q-tag{
+  display:block;
+  font-size:0.95rem;
+  font-weight:800;
+  color:var(--teal);
+  margin-bottom:4px;
+}
+
+/* ===== 救急情報テーブル ===== */
+.info-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:0.98rem;
+  margin-top:4px;
+}
+.info-table th,.info-table td{
+  border:1px solid var(--line);
+  padding:7px 9px;
+  text-align:left;
+  vertical-align:top;
+  line-height:1.5;
+}
+.info-table th{
+  background:var(--chip);
+  font-weight:800;
+  white-space:nowrap;
+  width:34%;
+}
+.place-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-top:4px;
+}
+.place-item{
+  border:1.5px solid var(--amber-line);
+  background:var(--amber-bg);
+  border-radius:10px;
+  padding:9px 6px;
+  text-align:center;
+  font-weight:800;
+  font-size:0.95rem;
+  color:var(--amber);
+  line-height:1.4;
+}
+.place-item .pl-ic{display:block;margin:0 auto 4px;}
+
+/* ===== 見出し色 ===== */
+.bg-red{background:var(--red);}
+.bg-teal{background:var(--teal);}
+.bg-navy{background:var(--navy);}
+.bg-amber{background:var(--amber);}
+.dot-red{background:var(--red);}
+.dot-teal{background:var(--teal);}
+.dot-navy{background:var(--navy);}
+.dot-amber{background:var(--amber);}
+
+@media (max-width:359px){
+  .home-grid{grid-template-columns:1fr;}
+  .place-grid{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+<main>
+
+<!-- ===== タイトル ===== -->
+<div class="title-block">
+  <h1>一人でいるときの<br>緊急時対応ガイド</h1>
+    <div class="title-lead">
+      <p>急な強い胸の痛み、急な息苦しさ、急にうまく話せないなどの異変があったら</p>
+      <p class="title-urgent"><strong>まず119番</strong></p>
+      <p>通報のあと、電話できるときに <strong>妹 → 息子</strong> の順で電話します。</p>
+    </div>
+</div>
+
+<!-- ===== 結論:優先順位 ===== -->
+<section aria-labelledby="sec0">
+  <div class="sec-head">
+    <div class="sec-badge bg-red" aria-hidden="true">!</div>
+    <div>
+      <h2 id="sec0">優先順位(結論)</h2>
+      <p class="sec-sub">上から順に重要。まずこの6つを固める</p>
+    </div>
+  </div>
+  <div class="card">
+    <ol class="prio">
+      <li><span class="p-num">1</span><span class="p-body"><b>急な強い症状や明らかな異変は119番</b><span class="p-sub">家族への相談より先に救急車</span></span></li>
+      <li><span class="p-num">2</span><span class="p-body"><b>スマホを常に手元に置く</b><span class="p-sub">家の中でも・寝る時も</span></span></li>
+      <li><span class="p-num">3</span><span class="p-body"><b>妹・息子を緊急連絡先に固定</b></span></li>
+      <li><span class="p-num">4</span><span class="p-body"><b>職場がある場合は、連絡が取れないときの手順を決める</b><span class="p-sub">職場から家族への連絡先を事前に伝える</span></span></li>
+      <li><span class="p-num">5</span><span class="p-body"><b>よくLINEする人にも「急に途絶えたら連絡して」と伝える</b></span></li>
+      <li><span class="p-num">6</span><span class="p-body"><b>救急隊向け情報を紙で家に置く</b></span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== A ===== -->
+<section aria-labelledby="secA">
+  <div class="sec-head">
+    <div class="sec-badge bg-navy" aria-hidden="true">A</div>
+    <div>
+      <h2 id="secA">スマホを「命綱」として運用する</h2>
+      <p class="sec-sub">常に手元・常に充電・すぐ電話できる状態に</p>
+    </div>
+  </div>
+  <div class="card">
+    <h3><span class="h3-dot dot-navy" aria-hidden="true"></span>ふだんからしておくこと</h3>
+    <ul class="check">
+      <li>外出時だけでなく、<b>家の中でもスマホを手の届く場所</b>に置く</li>
+      <li>寝る時は<b>枕元・ベッド横</b>に置く</li>
+      <li>トイレ・風呂前後・台所でも、できるだけ近くに置く</li>
+      <li><b>充電切れにしない</b></li>
+      <li>画面ロック解除や電話操作を普段から確認しておく</li>
+      <li><b>119番・妹・息子</b>へすぐ電話できる状態にしておく。妹と息子の電話番号は、スマホの連絡先に登録しておく</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3><span class="h3-dot dot-navy" aria-hidden="true"></span>ホーム画面の一番見やすい場所に置くもの</h3>
+    <div class="home-grid">
+      <div class="home-item hi-119"><span class="hi-ic" aria-hidden="true">119</span>電話アプリ</div>
+      <div class="home-item"><span class="hi-ic" aria-hidden="true">妹</span>妹への電話ショートカット</div>
+      <div class="home-item"><span class="hi-ic" aria-hidden="true">子</span>息子への電話ショートカット</div>
+      <div class="home-item"><span class="hi-ic" aria-hidden="true">L</span>LINE</div>
+      <div class="home-item"><span class="hi-ic" aria-hidden="true">SOS</span>可能なら緊急SOS機能</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== B ===== -->
+<section aria-labelledby="secB">
+  <div class="sec-head">
+    <div class="sec-badge bg-red" aria-hidden="true">B</div>
+    <div>
+      <h2 id="secB">119番する症状を決めておく</h2>
+      <p class="sec-sub">ここが最重要。基準を先に決めて迷わない</p>
+    </div>
+  </div>
+  <p class="alert-banner">次のような急な症状や明らかな異変があれば、家族に相談する前に119番
+    <span class="ab-small">「様子を見る」「まず家族に聞く」は不要</span>
+  </p>
+  <div class="card sym-unified">
+    <div class="sym-group">
+      <p class="sym-label">心筋梗塞を疑う症状</p>
+      <ul class="sym-chips">
+        <li>胸の中央が締め付けられる</li>
+        <li>圧迫される</li>
+        <li>息苦しい</li>
+        <li>冷や汗</li>
+        <li>吐き気</li>
+        <li>背中・肩・腕の痛み</li>
+      </ul>
+    </div>
+    <div class="sym-group">
+      <p class="sym-label">脳卒中を疑う症状</p>
+      <ul class="sym-chips">
+        <li>ろれつが回らない</li>
+        <li>片方の手足に力が入らない</li>
+        <li>顔の片側がゆがむ</li>
+        <li>急にふらつく</li>
+        <li>片目が見えにくい</li>
+        <li>突然の激しい頭痛</li>
+      </ul>
+    </div>
+    <div class="sym-group">
+      <p class="sym-label">意識障害を疑う症状</p>
+      <ul class="sym-chips">
+        <li>ぼんやりする</li>
+        <li>会話がおかしい</li>
+        <li>立てない</li>
+        <li>動けない</li>
+      </ul>
+    </div>
+    <div class="sym-group">
+      <p class="sym-label">その他</p>
+      <ul class="sym-chips">
+        <li>「これは普通じゃない」と感じる強い異変</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" style="margin-top:10px;">
+    <h3><span class="h3-dot dot-red" aria-hidden="true"></span>公的機関の基準・根拠</h3>
+    <p class="src"><b>厚生労働省:</b>胸の中央が締め付けられる・圧迫されるような痛みが2〜3分続く、急な息切れ・呼吸困難、ろれつが回りにくい、片方の腕や足に力が入らない、突然の激しい頭痛などは、迷わず119番する症状として紹介されています。<a href="https://kakarikata.mhlw.go.jp/kakaritsuke/urgency.html">厚生労働省の案内を読む</a>。</p>
+    <p class="src"><b>日本脳卒中協会:</b>脳卒中が疑われる時はすぐ救急車を呼ぶこと。早い対応が命を守り、後遺症を減らす。</p>
+    <p class="src"><b>日本心臓財団:</b>胸の痛みなどが長く続き急性心筋梗塞が疑われる場合は、自家用車やタクシーではなく119番して救急車で専門医のいる病院へ向かうことが重要。</p>
+  </div>
+</section>
+
+<!-- ===== C ===== -->
+<section aria-labelledby="secC">
+  <div class="sec-head">
+    <div class="sec-badge bg-red" aria-hidden="true">C</div>
+    <div>
+      <h2 id="secC">連絡は「119番 → 妹 → 息子」の順番</h2>
+      <p class="sec-sub">通報のあと、電話できるときに家族へ連絡</p>
+    </div>
+  </div>
+  <div class="card">
+    <ol class="flow">
+      <li class="f-first">
+        <div class="f-node">
+          <span class="f-num" aria-hidden="true">1</span>
+          <span><span class="f-label">119番</span><br><span class="f-sub">急な強い症状や明らかな異変があれば、家族に電話する前に通報</span></span>
+        </div>
+        <div class="f-arrow" aria-hidden="true"><svg width="20" height="26" viewBox="0 0 20 26"><path d="M10 0 v16 M3 12 l7 8 7-8" fill="none" stroke="var(--sub)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </li>
+      <li>
+        <div class="f-node">
+          <span class="f-num" aria-hidden="true">2</span>
+          <span><span class="f-label">妹に電話</span></span>
+        </div>
+        <div class="f-arrow" aria-hidden="true"><svg width="20" height="26" viewBox="0 0 20 26"><path d="M10 0 v16 M3 12 l7 8 7-8" fill="none" stroke="var(--sub)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </li>
+      <li>
+        <div class="f-node">
+          <span class="f-num" aria-hidden="true">3</span>
+          <span><span class="f-label">息子に電話</span></span>
+        </div>
+        <div class="f-arrow" aria-hidden="true"><svg width="20" height="26" viewBox="0 0 20 26"><path d="M10 0 v16 M3 12 l7 8 7-8" fill="none" stroke="var(--sub)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </li>
+      <li class="f-opt">
+        <div class="f-node">
+          <span class="f-num" aria-hidden="true">4</span>
+          <span><span class="f-label">LINE</span><br><span class="f-sub">余裕があれば</span></span>
+        </div>
+      </li>
+    </ol>
+    <p class="note"><b>理由:</b>心筋梗塞や脳卒中は、家族に相談している間に悪化する可能性があります。家族への連絡は大事ですが、救急車を呼ぶ判断を遅らせないことが最優先です。</p>
+  </div>
+  <div class="card ng-card">
+    <h3><span class="h3-dot dot-red" aria-hidden="true"></span>赤ライン(絶対に避けること)</h3>
+    <ul class="ng-list">
+      <li>「まず妹に相談してから119番」</li>
+      <li>「息子にLINEして返事を待つ」</li>
+      <li>「少し寝たら治るかも」</li>
+      <li>「迷惑をかけるから救急車は呼ばない」</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== D ===== -->
+<section aria-labelledby="secD">
+  <div class="sec-head">
+    <div class="sec-badge bg-amber" aria-hidden="true">D</div>
+    <div>
+      <h2 id="secD">職場への連絡ルール</h2>
+      <p class="sec-sub">仕事をしている場合に、連絡を取る順番を決めておく</p>
+    </div>
+  </div>
+  <div class="card">
+    <h3><span class="h3-dot dot-amber" aria-hidden="true"></span>職場にお願いするルール</h3>
+    <div class="branch">
+      <div class="b-node b-start">連絡なく出勤しない<span class="b-sub">職場が異変に気づくきっかけ</span></div>
+      <div class="b-arrow" aria-hidden="true"><svg width="20" height="24" viewBox="0 0 20 24"><path d="M10 0 v14 M3 10 l7 8 7-8" fill="none" stroke="var(--sub)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="b-node">職場から<b>まず私に電話</b></div>
+      <div class="b-arrow" aria-hidden="true"><svg width="20" height="24" viewBox="0 0 20 24"><path d="M10 0 v14 M3 10 l7 8 7-8" fill="none" stroke="var(--sub)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="b-split">
+        <div class="b-col b-ok">
+          <span class="b-tag">つながった</span>
+          <div class="b-node">状況確認して対応</div>
+        </div>
+        <div class="b-col b-alert">
+          <span class="b-tag">つながらない</span>
+          <div class="b-node"><b>妹か息子</b>へ連絡</div>
+        </div>
+      </div>
+    </div>
+    <p class="note"><b>注意点:</b>職場に詳しい病歴や家庭事情を伝える必要はありません。伝えるのは最低限でよいです。</p>
+    <div class="quote">
+      <span class="q-tag">職場への伝え方(例)</span>
+      私が連絡なく出勤せず、電話にも出ないときは、あらかじめお伝えした家族の連絡先へご連絡ください。
+    </div>
+  </div>
+</section>
+
+<!-- ===== E ===== -->
+<section aria-labelledby="secE">
+  <div class="sec-head">
+    <div class="sec-badge bg-teal" aria-hidden="true">E</div>
+    <div>
+      <h2 id="secE">よくLINEする人にも協力してもらう</h2>
+      <p class="sec-sub">普段のLINEを「見守りの一部」に使う</p>
+    </div>
+  </div>
+  <div class="card">
+    <h3><span class="h3-dot dot-teal" aria-hidden="true"></span>お願いする内容</h3>
+    <ul class="check">
+      <li><b>普段よくLINEしている人にだけ</b>伝える</li>
+      <li>「返信が遅い」程度ではなく、<b>明らかに不自然に連絡が途絶えた場合</b>に限定する</li>
+      <li>連絡先は<b>妹か息子</b>にする</li>
+    </ul>
+    <div class="quote">
+      <span class="q-tag">伝え方(例)</span>
+      私からの連絡が急に途絶えたり、メッセージの内容が普段と明らかに違ったりして心配なときは、妹か息子に連絡してください。
+    </div>
+    <p class="note"><b>注意点:</b>LINEは補助です。既読・未読だけで安全確認するのは危険です。</p>
+  </div>
+</section>
+
+<!-- ===== F ===== -->
+<section aria-labelledby="secF">
+  <div class="sec-head">
+    <div class="sec-badge bg-amber" aria-hidden="true">F</div>
+    <div>
+      <h2 id="secF">救急情報を紙で置く</h2>
+      <p class="sec-sub">救急隊にはスマホより紙の方が早い場面がある</p>
+    </div>
+  </div>
+  <div class="card">
+    <h3><span class="h3-dot dot-amber" aria-hidden="true"></span>家に置く場所</h3>
+    <div class="place-grid">
+      <div class="place-item"><svg class="pl-ic" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path d="M4 24 V10 L13 3 l9 7 v14 h-6 v-8 h-6 v8 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>玄関付近</div>
+      <div class="place-item"><svg class="pl-ic" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><rect x="6" y="2" width="14" height="22" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><line x1="6" y1="10" x2="20" y2="10" stroke="currentColor" stroke-width="2"/><line x1="9" y1="5" x2="9" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="9" y1="13" x2="9" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>冷蔵庫</div>
+      <div class="place-item"><svg class="pl-ic" width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><path d="M5 4 h13 a3 3 0 0 1 3 3 v15 H8 a3 3 0 0 1 -3 -3 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><line x1="13" y1="9" x2="13" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="10" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>お薬手帳の近く</div>
+    </div>
+  </div>
+  <div class="card">
+    <h3><span class="h3-dot dot-amber" aria-hidden="true"></span>書く内容</h3>
+    <table class="info-table">
+      <caption class="sr-caption" style="text-align:left;font-size:0.95rem;color:var(--sub);margin-bottom:6px;">救急情報シートの記載項目</caption>
+      <tbody>
+        <tr><th scope="row">氏名</th><td>自分の氏名</td></tr>
+        <tr><th scope="row">生年月日</th><td>年齢確認用</td></tr>
+        <tr><th scope="row">住所</th><td>救急隊用</td></tr>
+        <tr><th scope="row">緊急連絡先1</th><td>妹の名前・電話番号</td></tr>
+        <tr><th scope="row">緊急連絡先2</th><td>息子の名前・電話番号</td></tr>
+        <tr><th scope="row">かかりつけ医</th><td>病院名・電話番号</td></tr>
+        <tr><th scope="row">持病</th><td>あれば記載</td></tr>
+        <tr><th scope="row">服薬</th><td>薬名・用量</td></tr>
+        <tr><th scope="row">アレルギー</th><td>薬・食品</td></tr>
+        <tr><th scope="row">保険証</th><td>保管場所</td></tr>
+        <tr><th scope="row">お薬手帳</th><td>保管場所</td></tr>
+        <tr><th scope="row">合鍵</th><td>誰が持っているか</td></tr>
+      </tbody>
+    </table>
+    <p class="src"><b>総務省消防庁</b>の救急関連ポータルにも、救急情報シートなど救急時に役立つ資料が掲載されています(防災科学技術研究所)。</p>
+  </div>
+</section>
+
+<!-- ===== 日常の注意 ===== -->
+<section aria-labelledby="secG">
+  <div class="sec-head">
+    <div class="sec-badge bg-teal" aria-hidden="true">毎日</div>
+    <div>
+      <h2 id="secG">毎日の確認</h2>
+      <p class="sec-sub">毎日の習慣にする8項目</p>
+    </div>
+  </div>
+  <div class="card">
+    <ul class="check">
+      <li>スマホは<b>常に充電</b>する</li>
+      <li>家の中でも<b>スマホを遠くに置かない</b></li>
+      <li>寝る時は<b>枕元に置く</b></li>
+      <li><b>体調が悪い時は風呂に入らない</b></li>
+      <li><b>胸・息苦しさ・ろれつ・片側の手足の異変</b>は軽く見ない</li>
+      <li>「救急車を呼ぶほどではない」と<b>自己判断しない</b></li>
+      <li>急を要する症状がないときの体調の変化は、<b>妹か息子に一言LINE</b>する</li>
+      <li>仕事を休む時は、<b>必ず職場に連絡</b>する</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+</body>
+</html>
